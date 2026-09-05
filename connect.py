@@ -4,7 +4,7 @@ from contextlib import contextmanager
 database = './users_tasks.db'
 
 @contextmanager
-def create_database(db_file):
+def create_connection(db_file):
     """ create a database connection to a SQLite database """
     conn = sqlite3.connect(db_file)
     yield conn

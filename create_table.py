@@ -1,13 +1,10 @@
 from sqlite3 import Error
 from connect import create_connection, database
+from seed import NUMBER_OF_TASKS, NUMBER_OF_USERS, generate_fake_data, insert_data_to_db
 
 
 def create_table(conn, create_table_sql):
-    """create a table from the create_table_sql statement
-    :param conn: Connection object
-    :param create_table_sql: a CREATE TABLE statement
-    :return:
-    """
+    """create a table from the create_table_sql statement"""
     try:
         c = conn.cursor()
         c.execute(create_table_sql)
@@ -49,10 +46,17 @@ if __name__ == "__main__":
 
     with create_connection(database) as conn:
         if conn is not None:
+            
             conn.execute("PRAGMA foreign_keys = ON;")
-            create_table(conn, sql_create_users_table)   # create users table
-            create_table(conn, sql_create_status_table)  # create status table
-            create_table(conn, sql_create_tasks_table)   # create tasks table
+
+            # Table creation
+            create_table(conn, sql_create_users_table)
+            create_table(conn, sql_create_status_table)
+            create_table(conn, sql_create_tasks_table)
             print("Tables created successfully.")
+
+            # Data generation and insertion
+            users, statuses, tasks = generate_fake_data(NUMBER_OF_USERS, NUMBER_OF_TASKS)
+            insert_data_to_db(conn, users, statuses, tasks)
         else:
-            print("Error! cannot create the database connection.")
+            print("Error! Cannot create the database connection.")
