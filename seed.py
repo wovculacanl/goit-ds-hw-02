@@ -28,7 +28,7 @@ def generate_fake_data(number_of_users: int, number_of_tasks: int) -> tuple:
 
 
 def insert_data_to_db(conn, users, statuses, tasks):
-    """Вставка згенерованих даних за допомогою executemany"""
+    """ Insert generated data into the database using executemany"""
     sql_insert_users = "INSERT INTO users (fullname, email) VALUES (?, ?);"
     sql_insert_status = "INSERT INTO status (name) VALUES (?);"
     sql_insert_tasks = "INSERT INTO tasks (title, description, status_id, user_id) VALUES (?, ?, ?, ?);"
