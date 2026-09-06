@@ -11,7 +11,7 @@ def update_username(user_id: int, new_fullname: str) -> bool:
             cur = con.cursor()
             cur.execute(sql, (new_fullname, user_id))
             con.commit()
-            return cur.rowcount > 0  # Повертає True, якщо було оновлено хоча б один рядок
+            return cur.rowcount > 0  # Returns True if a row was updated, False otherwise
     except sqlite3.Error as e:
         print(f"Database error: {e}")
         return False
