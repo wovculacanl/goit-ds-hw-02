@@ -23,6 +23,11 @@ This creates the tables and fills them with random data (Faker):
 
 ```bash
 python create_table.py
+python init_db.py
+
+
+
+
 ```
 
 The database file `users_tasks.db` appears in the project root.
