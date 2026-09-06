@@ -59,3 +59,16 @@ if __name__ == "__main__":
             print(
                 f"Task added successfully! New task ID: {new_task_id} (assigned to user ID {target_user_id})"
             )
+
+
+
+"""
+
+For DBeaver:
+SELECT t.id, t.title, t.description, s.name AS status, u.fullname AS user
+FROM tasks t
+JOIN status s ON t.status_id = s.id
+JOIN users u ON t.user_id = u.id
+WHERE t.user_id = 1;
+
+"""           

@@ -29,6 +29,6 @@ def update_task_status(task_id: int, new_status: str) -> None:
 
 if __name__ == "__main__":
     target_task_id = 4
-    target_status = "in progress"  # 'new', 'in progress', 'completed'
+    target_status = "completed"  # 'new', 'in progress', 'completed'
 
     update_task_status(target_task_id, target_status)
