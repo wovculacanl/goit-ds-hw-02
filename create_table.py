@@ -1,6 +1,6 @@
 from sqlite3 import Error
 from connect import create_connection, database
-from seed import NUMBER_OF_TASKS, NUMBER_OF_USERS, generate_fake_data, insert_data_to_db
+from init_db import NUMBER_OF_TASKS, NUMBER_OF_USERS, generate_fake_data, insert_data_to_db
 
 
 def create_table(conn, create_table_sql):

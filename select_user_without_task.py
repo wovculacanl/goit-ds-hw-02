@@ -4,10 +4,13 @@ DATABASE = "users_tasks.db"
 
 def get_users_without_tasks() -> list:
     sql = """
-    SELECT u.id, u.fullname, u.email
-    FROM users AS u
-    LEFT JOIN tasks AS t ON u.id = t.user_id
-    WHERE t.user_id IS NULL;
+    SELECT id, fullname, email
+    FROM users
+    WHERE id NOT IN (
+        SELECT user_id
+        FROM tasks
+        WHERE user_id IS NOT NULL
+    );
     """
 
     with sqlite3.connect(DATABASE) as con:
@@ -28,11 +31,11 @@ if __name__ == "__main__":
 """
 For DBeaver:
 
-SELECT *
+SELECT id, fullname, email
 FROM users
 WHERE id NOT IN (
-    SELECT DISTINCT user_id 
-    FROM tasks 
+    SELECT user_id
+    FROM tasks
     WHERE user_id IS NOT NULL
 );
 
